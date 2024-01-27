@@ -1,5 +1,4 @@
-// Alert.jsx
-import React from 'react';
+
 
 const Alert = ({ message, color }) => {
   const alertStyle = {

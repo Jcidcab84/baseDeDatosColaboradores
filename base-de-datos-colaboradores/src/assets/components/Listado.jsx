@@ -1,6 +1,7 @@
 const Listado = ({ colaboradores, eliminarColaborador }) => {
   return (
-    <table className="table table table-striped table-responsive">
+    <>  
+    <table className="table  ">
       <thead>
         <tr>
           <th>ID</th>
@@ -28,6 +29,7 @@ const Listado = ({ colaboradores, eliminarColaborador }) => {
         ))}
       </tbody>
     </table>
+    </>
   );
 };
 

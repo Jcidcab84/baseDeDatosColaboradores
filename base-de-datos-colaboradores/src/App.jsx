@@ -67,14 +67,22 @@ const App = () => {
 
   return (
     <div className="container">
+      
       <h1>Lista de Colaboradores</h1>
+      <br />
       <Buscador buscarColaborador={buscarColaborador} />
+      <br />
+      <br />
+      <div className='d-flex flex-row col-12'>
+        <div className='table table-striped table-responsive'>
       <Listado
         colaboradores={colaboradores}
         eliminarColaborador={eliminarColaborador}
         mostrarAlerta={mostrarAlerta}
       />
-      <hr />
+      </div>
+    <br />
+    <div className="d-flex flex-column mb-3 p-2 col-4">
       <Formulario
         agregarColaborador={agregarColaborador}
         nombre={nombre}
@@ -89,7 +97,10 @@ const App = () => {
         setTelefono={setTelefono}
         mostrarAlerta={mostrarAlerta} 
         />
+    
       <Alert message={alertMessage} color={alertColor} />
+      </div>
+    </div>
     </div>
   );
 };
