@@ -1,61 +1,88 @@
-import { useState } from "react";
 
-const Formulario = () => {
-  const [nuevoColaborador, setNuevoColaborador] = useState({
-    nombre: "",
-    email: "",
-    edad: "",
-    cargo: "",
-    telefono: "",
-  });
+import React from 'react';
 
+const Formulario = ({
+  agregarColaborador,
+  nombre,
+  setNombre,
+  correo,
+  setCorreo,
+  edad,
+  setEdad,
+  cargo,
+  setCargo,
+  telefono,
+  setTelefono,
+  mostrarAlerta,
+}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-const enviarFormulario = (e) => e.preventDefault();
+    if (!nombre || !correo || !edad || !cargo || !telefono) {
+      mostrarAlerta('Todos los campos deben estar completos!', 'danger');
+    } else {
+      agregarColaborador({ nombre, correo, edad, cargo, telefono });
+      mostrarAlerta('Colaborador agregado exitosamente.', 'success');
 
-
-  const capturaInput = (e) => {
-    setNuevoColaborador(e.target.value);
-   
-   
+    
+      setNombre('');
+      setCorreo('');
+      setEdad('');
+      setCargo('');
+      setTelefono('');
+    }
   };
 
   return (
     <>
-      <h2>Agregar colaborador</h2>
-      <form onSubmit={enviarFormulario}>
+      <h2>Agregar Colaborador</h2>
+      <form onSubmit={handleSubmit} className="d-flex flex-column mb-3">
         <input
           type="text"
-          name="nombreColaborador"
           placeholder="Nombre del colaborador"
-          onChange={capturaInput}
+          value={nombre}
+          className="form-control m-2 text-center"
+          onChange={(e) => setNombre(e.target.value)}
         />
+
         <input
           type="email"
-          name="emailColaborador"
           placeholder="Email del colaborador"
-          onChange={capturaInput}
+          value={correo}
+          className="form-control m-2 text-center"
+          onChange={(e) => setCorreo(e.target.value)}
         />
+
         <input
           type="number"
-          name="edadColaborador"
           placeholder="Edad del colaborador"
-          onChange={capturaInput}
+          value={edad}
+          className="form-control m-2 text-center"
+          onChange={(e) => setEdad(e.target.value)}
         />
+
         <input
           type="text"
-          name="cargoColaborador"
           placeholder="Cargo del colaborador"
-          onChange={capturaInput}
+          value={cargo}
+          className="form-control m-2 text-center"
+          onChange={(e) => setCargo(e.target.value)}
         />
+
         <input
-          type="number"
-          name="telefonoColaborador"
+          type="tel"
           placeholder="Teléfono del colaborador"
-          onChange={capturaInput}
+          value={telefono}
+          className="form-control m-2 text-center"
+          onChange={(e) => setTelefono(e.target.value)}
         />
-        <button type="submit">Agregar colaborador</button>
+
+        <button className="btn btn-primary m-2" type="submit">
+          Agregar Colaborador
+        </button>
       </form>
     </>
   );
 };
+
 export default Formulario;
